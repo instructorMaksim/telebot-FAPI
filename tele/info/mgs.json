@@ -1,0 +1,31 @@
+{
+    "update_id": 873541676,
+    "message": {
+      "message_id": 3,
+      "from": {
+        "id": 435627225,
+        "is_bot": false,
+        "first_name": "Дмитрий",
+        "last_name": "Калекин",
+        "username": "herr_horror",
+        "language_code": "ru"
+      },
+      "chat": {
+        "id": 435627225,
+        "first_name": "Дмитрий",
+        "last_name": "Калекин",
+        "username": "herr_horror",
+        "type": "private"
+      },
+      "date": 1653572784,
+      "text": "/start",
+      "entities": [
+        {
+          "offset": 0,
+          "length": 6,
+          "type": "bot_command"
+        }
+      ]
+    }
+  }
+  

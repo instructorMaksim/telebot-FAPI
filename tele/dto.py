@@ -18,8 +18,8 @@ class UpdateTelegram(BaseModel):
     edited_message: Message = None
 
 
-class sendMessage(BaseModel):
-    id: int
+class sendTheMessage(BaseModel):
+    chat_id: int 
     text: str = "it's an experiment"
 
 
@@ -35,3 +35,4 @@ class sendWeather(BaseModel):
 #     'main:', q['weather'][0]['description'],"\n",
 #     'wind:', q['wind']['speed'],'km/h'
 # )
+

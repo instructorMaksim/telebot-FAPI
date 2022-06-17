@@ -1,9 +1,11 @@
+from xmlrpc.client import Boolean
 import requests
 
 from app.config import TG_URL, APP_HOST
+from dto import sendTheMessage
 
 
-async def setWebhook(APP_HOST) -> bool:
+async def setWebhook() -> bool:
     json_params = {
         "url": APP_HOST,
         "allowed_updates": ["message", "edited_message", "callback_query"]
@@ -15,12 +17,26 @@ async def setWebhook(APP_HOST) -> bool:
 
 
 async def deleteWebhook() -> bool:
-    pass
+    params = {
+        "drop_pending_updates": True,
+    }
+    endpoint = TG_URL + "deleteWebhook"
+    result = requests.post(endpoint, params=params)
+    js = result.json()
+    return js.get("ok", False)  #под вопросом
+    #pass
 
 
-async def getWebhookInfo() -> dict:
-    pass
+async def WebhookInfo() -> dict:
+    endpoint = TG_URL + "getWebhookinfo"
+    result = requests.post(endpoint)
+    js = result.json()
+    return js.get("ok", False)  #ваще хз какой результат тут
+    #pass
 
 
-async def sendMessage(chat: int, msg: str) -> dict:
-    pass
+async def send_message(chat: int, msg: str) -> dict:
+    method = TG_URL + "/sendMessage"
+    response = requests.post(method, params = sendTheMessage) 
+    #pass
+    #вызов имени функции("text")

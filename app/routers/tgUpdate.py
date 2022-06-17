@@ -17,6 +17,3 @@ async def tg_wh(r: UpdateTelegram):  # r: Request
     #return {"Status": "OK"}
 
 
-@router.post(f"{TG_URL}/post")
-async def tg_wh(g: sendMessage):
-    return {"Status": "OK"}

@@ -2,20 +2,21 @@ import json
 import asyncio
 from fastapi import FastAPI
 from loguru import logger as log
-from tele.sdk import setWebhook, deleteWebhook
+from tele.sdk import WebhookInfo, setWebhook, deleteWebhook
 from app.config import APP_HOST
 # from tele.dto import UpdateTelegram
-from .routers import tgUpdate
+from .routers import tgUpdate #, gSendmessage
 
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+# @app.get("/")
+# async def root():
+#     return {"message": "Hello World"}
 
 
 app.include_router(tgUpdate.router)
+#app.include_router(tgSendmessage.router)
 
 # @app.post("/tg_wh")
 # async def tg_wh(r: UpdateTelegram):  # r: Request
@@ -36,11 +37,19 @@ async def on_startup():
     log.warning("APP start")
     log.error("APP start")
     log.critical("APP start")
+
+
+    url = f"{APP_HOST}/tg_wh"
     # 1. Получить getWebhookInfo
+    test_set = await WebhookInfo(url)
+    if test_set #далее я должен указать ключ на айпи адрес хука
+                #из джейсон файла и сравнить его с нашим
+                #если он не совпадает - активируется делет и следом сет.
+    
     # 2. Если вебхук отличается от нашего - то удалить через deleteWebhook
     # 3 и затем setWebhook
     # -- если не отличается -то не трогаем ничего
-    url = f"{APP_HOST}/tg_wh"
+    # url = f"{APP_HOST}/tg_wh"
     was_set = await setWebhook(url)
     if was_set:
         log.success("Webhook was set")
